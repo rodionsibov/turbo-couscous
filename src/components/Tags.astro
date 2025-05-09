@@ -1,0 +1,18 @@
+---
+const { tags } = Astro.props;
+---
+
+<div class="border bg-gray-50 rounded-md p-4 border-gray-200 w-fit">
+  {
+    tags.map((tag: string) => (
+      <p>
+        <a
+          class="text-sm hover:underline opacity-70 uppercase hover:opacity-100"
+          href={`/tags/${tag}`}
+        >
+          {tag}
+        </a>
+      </p>
+    ))
+  }
+</div>

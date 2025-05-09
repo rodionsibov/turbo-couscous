@@ -1,0 +1,47 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Tags from "../components/Tags.astro";
+
+const allPosts = Object.values(
+  import.meta.glob("../pages/posts/*.md", { eager: true })
+);
+
+const tags = [
+  ...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat()),
+];
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <article class="prose mx-auto my-8">
+    <p>
+      Published on: {new Date(frontmatter.pubDate).toLocaleDateString()}
+    </p>
+
+    <div class="flex gap-2">
+      {
+        frontmatter.tags.map((tag: string) => (
+          <a
+            href={`/tags/${tag}`}
+            class="py-1 px-2 text-xs font-medium bg-blue-100 rounded-lg hover:bg-blue-200 transition-colors no-underline"
+          >
+            {tag}
+          </a>
+        ))
+      }
+    </div>
+
+    <img
+      class="rounded-lg w-full"
+      src={frontmatter.image.url}
+      alt={frontmatter.image.alt}
+    />
+
+    <slot />
+
+    <p class="italic">Written by {frontmatter.author}</p>
+  </article>
+
+  <Tags tags={tags} />
+</BaseLayout>

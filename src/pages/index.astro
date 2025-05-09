@@ -1,0 +1,37 @@
+---
+import Greeting from "../components/Greeting";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "Home Page";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <h1 class="text-4xl my-8 font-bold">My awesome blog</h1>
+
+  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+
+  <div class="space-y-8">
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus,
+      voluptatibus ipsum laboriosam suscipit fuga excepturi nesciunt eligendi.
+      Doloremque adipisci necessitatibus neque cum expedita illum vel enim
+      officiis quo, quam velit!
+    </p>
+
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus et
+      totam laudantium?
+    </p>
+
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores neque
+      nulla facere impedit quibusdam inventore aliquid modi voluptatibus,
+      ducimus adipisci consequatur quos sed deleniti.
+    </p>
+
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus et
+      totam laudantium?
+    </p>
+  </div>
+</BaseLayout>
